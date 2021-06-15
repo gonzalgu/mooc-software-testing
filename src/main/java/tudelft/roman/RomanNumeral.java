@@ -1,5 +1,6 @@
 package tudelft.roman;
 
+import javax.print.attribute.IntegerSyntax;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,18 @@ public class RomanNumeral {
         map.put('M', 1000);
     }
 
+    private boolean checkValidSubtractive(int current, int next){
+        /*
+        Numerals V (5), L (50), D (500), (V) (5,000), (L) (50,000), (D) (500,000) are NOT allowed to be used as
+        numerals of lesser value in subtractive notation groups of Roman numerals.
+         */
+        if(current == 5 || current == 50 || current == 500){
+            //invalid subtractive
+            return false;
+        }
+        return true;
+    }
+
     public int convert(String s) {
 
         int convertedNumber = 0;
@@ -27,8 +40,13 @@ public class RomanNumeral {
 
             if(currentNumber >= next)
                 convertedNumber += currentNumber;
-            else
+            else if(checkValidSubtractive(currentNumber, next)){
+
                 convertedNumber -= currentNumber;
+            }else{
+                //invalid number
+                return -1;
+            }
         }
 
         return convertedNumber;

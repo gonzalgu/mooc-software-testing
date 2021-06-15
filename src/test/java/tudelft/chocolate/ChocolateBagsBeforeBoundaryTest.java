@@ -28,4 +28,10 @@ public class ChocolateBagsBeforeBoundaryTest {
         int result = new ChocolateBags().calculate(4, 2, 3);
         Assertions.assertEquals(3, result);
     }
+
+    @Test
+    public void failingTest(){
+        int result = new ChocolateBags().calculate(0, 3, 17);
+        Assertions.assertEquals(2, result);
+    }
 }
