@@ -17,4 +17,26 @@ public class CountLettersTest {
         Assertions.assertEquals(1, words);
     }
 
+    @Test
+    public void firstWordEndsWithR()
+    {
+        int words = new CountLetters().count("pater|familias");
+        Assertions.assertEquals(2, words);
+    }
+
+    @Test
+    public void doesNotEndsWithRorS()
+    {
+        int words = new CountLetters().count("alia|");
+        Assertions.assertEquals(0, words);
+    }
+
+    @Test
+    public void singleWordEndsWithR()
+    {
+        int words = new CountLetters().count("pater");
+        Assertions.assertEquals(1, words);
+    }
+
+
 }
